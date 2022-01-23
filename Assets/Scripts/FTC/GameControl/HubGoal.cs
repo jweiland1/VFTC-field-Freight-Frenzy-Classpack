@@ -18,7 +18,7 @@ public class HubGoal : MonoBehaviour
     {
 
         if (parent.name.ToLower().Contains("red")) { team = "Red"; }
-        if (parent.name.ToLower().Contains("blue")) { team = "Blue"; }
+       if (parent.name.ToLower().Contains("blue")) { team = "Blue"; }
     }
 
     private void Start()
@@ -28,6 +28,7 @@ public class HubGoal : MonoBehaviour
 
     private void Update()
     {
+        print(parent);
         if (HubLevel < 4)
         {
             bool deltaBal = isBalanced;

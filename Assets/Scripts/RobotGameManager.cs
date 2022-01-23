@@ -204,14 +204,14 @@ public class RobotGameManager : MonoBehaviour
 
     void SpawnRandomDucks()
     {
-        int spawnIndex = UnityEngine.Random.Range(0, 3);
+        int spawnIndex = UnityEngine.Random.Range(0, 2);
 
         SpawnItem(duck, blueTeamDuckSpawns[spawnIndex].position);
         SpawnItem(duck, blueTeamDuckSpawns2[spawnIndex].position);
-        SpawnItem(duck, redCarouselDuckSpawn.position);
+        
         SpawnItem(duck, redTeamDuckSpawns[spawnIndex].position );
         SpawnItem(duck, redTeamDuckSpawns2[spawnIndex].position);
-        SpawnItem(duck, blueCarouselDuckSpawn.position);
+
     }
 
     void DestroySpawnedObjects()
@@ -272,7 +272,7 @@ public class RobotGameManager : MonoBehaviour
         if (GameStart != null)GameStart();
 
 
-        GameObject.FindGameObjectWithTag("JointHub").BroadcastMessage("Reset");
+
         GameObject.FindGameObjectWithTag("RedHub").BroadcastMessage("Reset");
         GameObject.FindGameObjectWithTag("BlueHub").BroadcastMessage("Reset");
         GameObject[] g = GameObject.FindGameObjectsWithTag("Box");
