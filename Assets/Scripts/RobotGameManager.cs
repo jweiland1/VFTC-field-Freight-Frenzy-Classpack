@@ -244,7 +244,7 @@ public class RobotGameManager : MonoBehaviour
         {
             for (int j = 0; j < numObjectsToSpawn[i]; j++)
             {
-                Vector3 offset = new Vector3(UnityEngine.Random.Range(-itemOffset, itemOffset), 0, UnityEngine.Random.Range(-itemOffset, itemOffset));
+                Vector3 offset = new Vector3(0, 0, 0);
                 SpawnItem(objectsToSpawnInWarehouse[i], blueItemSpawn.position + offset);
             }
         }
@@ -253,7 +253,7 @@ public class RobotGameManager : MonoBehaviour
         {
             for (int j = 0; j < numObjectsToSpawn[i]; j++)
             {
-                Vector3 offset = new Vector3(UnityEngine.Random.Range(-itemOffset, itemOffset), 0, UnityEngine.Random.Range(-itemOffset, itemOffset));
+                Vector3 offset = new Vector3(0, 0, 0);
                 SpawnItem(objectsToSpawnInWarehouse[i], redItemSpawn.position + offset);
             }
         }
