@@ -63,10 +63,12 @@ public class RobotController : MonoBehaviour
     Vector3 startRot;
 
     [Header("Subsystem Controls")]
-    public GameObject arm;
+    public GameObject shooter;
     public GameObject intake;
+    public GameObject grabber;
 
-    private ArmControl armControl;
+    private GrabberControl grabberControl;
+    private ShooterControl shooterControl;
     private IntakeControl intakeControl;
 
     private AudioManager audioManager;
@@ -89,22 +91,27 @@ public class RobotController : MonoBehaviour
         startRot = transform.eulerAngles;
 
         if (!intake) intake = transform.Find("Intake").gameObject;
-        if (!arm) arm = transform.Find("slide mount:1").gameObject;
+        //if (!arm) arm = transform.Find("slide mount:1").gameObject;
 
         controls = new PlayerControls();
 
-        //Arm
-        controls.GamePlay.ArmExtend.performed += ctx => motorPower6 = 1.0f;
-        controls.GamePlay.ArmExtend.canceled += ctx => motorPower6 = 0.0f;
-        controls.GamePlay.ArmDecend.performed += ctx => motorPower7 = 1.0f;
-        controls.GamePlay.ArmDecend.canceled += ctx => motorPower7 = 0.0f;
-        controls.GamePlay.ArmRotateForward.performed += ctx => motorPower8 = 1.0f;
-        controls.GamePlay.ArmRotateForward.canceled += ctx => motorPower8 = 0.0f;
-        controls.GamePlay.ArmRotateBackward.performed += ctx => motorPower9 = 1.0f;
-        controls.GamePlay.ArmRotateBackward.canceled += ctx => motorPower9 = 0.0f;
+        // Shooting
+        controls.GamePlay.Shoot.performed += ctx => motorPower6 = 1.0f;
+        controls.GamePlay.Shoot.canceled += ctx => motorPower6 = 0.0f;
+
+        // Spinup
+        controls.GamePlay.Spinup.performed += ctx => motorPower7 = ctx.ReadValue<float>();
+        controls.GamePlay.Spinup.canceled += ctx => motorPower7 = 0.0f;
+
         //Intake
         controls.GamePlay.Intake.performed += ctx => motorPower5 = 1f;
         controls.GamePlay.Intake.canceled += ctx => motorPower5 = 0.0f;
+
+        //Wobble
+        controls.GamePlay.Wobble.performed += ctx => motorPower8 = 0.3f;
+        controls.GamePlay.Wobble.canceled += ctx => motorPower8 = 0.0f;
+        controls.GamePlay.WobbleHigh.performed += ctx => motorPower8 = 1f;
+        controls.GamePlay.WobbleHigh.canceled += ctx => motorPower8 = 0.0f;
 
         //Driving Controls
         controls.GamePlay.DriveForward.started += ctx => usingJoystick = true;
@@ -171,10 +178,18 @@ public class RobotController : MonoBehaviour
 
         Console.WriteLine("Started.....");
 
+        shooterControl = shooter.GetComponent<ShooterControl>();
+        shooterControl.Commands.Add(() => motorPower6 > 0, shooterControl.shooting);
+        shooterControl.Commands.Add(() => motorPower7 >= 0, () =>
+        {
+            robotSoundControl.playShooterRev(motorPower7);
+            shooterControl.setVelocity(motorPower7);
+        });
+
         intakeControl = intake.GetComponent<IntakeControl>();
         intakeControl.Commands.Add(() => motorPower5 != 0, () =>
         {
-            //robotSoundControl.playIntakeRev(motorPower5);
+            robotSoundControl.playIntakeRev(motorPower5);
             intakeControl.setVelocity(motorPower5 * 150);
             intakeControl.deployIntake();
         });
@@ -184,7 +199,21 @@ public class RobotController : MonoBehaviour
             intakeControl.retractIntake();
         });
 
-        armControl = arm.GetComponent<ArmControl>();
+        grabberControl = grabber.GetComponent<GrabberControl>();
+        grabberControl.Commands.Add(() => motorPower8 > 0, () =>
+        {
+            grabberControl.startGrab();
+        });
+        grabberControl.Commands.Add(() => motorPower8 > 0.5, () =>
+        {
+            grabberControl.lift();
+        });
+        grabberControl.Commands.Add(() => motorPower8 == 0, () =>
+        {
+            grabberControl.stopGrab();
+        });
+
+        /*armControl = arm.GetComponent<ArmControl>();
         armControl.Commands.Add(() => motorPower6 != 0, () =>
         {
             armControl.ExtendArm();
@@ -200,7 +229,7 @@ public class RobotController : MonoBehaviour
         armControl.Commands.Add(() => motorPower9 != 0, () =>
         {
             armControl.RotateArmBackward();
-        });
+        });*/
 
     }
 
@@ -209,31 +238,18 @@ public class RobotController : MonoBehaviour
         // Strafer Drivetrain Control
         if (!usingJoystick)
         {
-
-            //linearVelocityX = ((frontLeftWheelCmd + frontRightWheelCmd + backLeftWheelCmd + backRightWheelCmd) / 4) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI);
-            linearVelocityX = transform.forward.x * Input.GetAxisRaw("Vertical");
-            //linearVelocityY = ((-frontLeftWheelCmd + frontRightWheelCmd + backLeftWheelCmd - backRightWheelCmd) / 4) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI);
-            linearVelocityY = transform.forward.z * Input.GetAxisRaw("Vertical");
+            linearVelocityX = ((frontLeftWheelCmd + frontRightWheelCmd + backLeftWheelCmd + backRightWheelCmd) / 4) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI);
+            linearVelocityY = ((-frontLeftWheelCmd + frontRightWheelCmd + backLeftWheelCmd - backRightWheelCmd) / 4) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI);
             angularVelocity = (((-frontLeftWheelCmd + frontRightWheelCmd - backLeftWheelCmd + backRightWheelCmd) / 3) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI) / (Mathf.PI * wheelSeparationWidth)) * 2 * Mathf.PI;
-       
         }
         // Apply Local Velocity to Rigid Body        
         var locVel = transform.InverseTransformDirection(rb.velocity);
-        locVel.x = -linearVelocityY ;
-        locVel.y = 0f;
-        locVel.z = -linearVelocityX ;
-
-
-
-        moveGoal = Vector3.Lerp(moveGoal,transform.TransformDirection(locVel), accelSpeed * Time.deltaTime);
-        moveGoal.y = 0;
-        rb.velocity = moveGoal;
-        //  rb.velocity = transform.TransformDirection(locVel);
-
-        rotGoal = Mathf.Lerp(rotGoal, angularVelocity, rotSpeed * Time.deltaTime);
-
+        locVel.x = -linearVelocityY;
+        locVel.y = -linearVelocityX;
+        locVel.z = 0f;
+        rb.velocity = transform.TransformDirection(locVel);
         //Apply Angular Velocity to Rigid Body
-        rb.angularVelocity = new Vector3(0f, -rotGoal, 0f);
+        rb.angularVelocity = new Vector3(0f, -angularVelocity, 0f);
         //Encoder Calculations 
         frontLeftWheelEnc += (motorRPM / 60) * frontLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
         frontRightWheelEnc += (motorRPM / 60) * frontRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
@@ -252,7 +268,7 @@ public class RobotController : MonoBehaviour
             //print("Can not find javascript functions");
         }
 
-        //robotSoundControl.playRobotDrive((Mathf.Abs(linearVelocityX) + Mathf.Abs(linearVelocityY) + Mathf.Abs(angularVelocity)) / 4f);
+        robotSoundControl.playRobotDrive((Mathf.Abs(linearVelocityX) + Mathf.Abs(linearVelocityY) + Mathf.Abs(angularVelocity)) / 4f);
     }
 
     public void resetEncoders()
@@ -353,17 +369,19 @@ public class RobotController : MonoBehaviour
         if (!Photon.Pun.PhotonNetwork.IsConnected)
         {
             driveRobot();
-           
-            armControl.Commands.Process();
+
+            shooterControl.Commands.Process();
             intakeControl.Commands.Process();
-            
+            grabberControl.Commands.Process();
+
         }
         else if (GetComponent<Photon.Pun.PhotonView>().IsMine)
         {
             driveRobot();
            
-            armControl.Commands.Process();
+            shooterControl.Commands.Process();
             intakeControl.Commands.Process();
+            grabberControl.Commands.Process();
         }
     }
 

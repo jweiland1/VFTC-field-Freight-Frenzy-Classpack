@@ -7628,6 +7628,75 @@ Transform:
   m_Father: {fileID: 1513372435}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 31.33, y: 180, z: 0}
+--- !u!1 &1141068765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1141068768}
+  - component: {fileID: 1141068767}
+  - component: {fileID: 1141068766}
+  m_Layer: 0
+  m_Name: Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1141068766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141068765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b22371e4c1ff824398629a30b151787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1141068767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141068765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d037ad010a4da940aef361a65ca93a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayStart: 1
+  mutliplayerScene: 3
+  gameTypeOptions:
+  - freeplay
+  - auto
+  - teleop
+  fieldSetupOptions:
+  - Random
+  - A
+  - B
+  - C
+  camSetupOptions: 0000000001000000020000000300000004000000
+  spawnPositions: []
+--- !u!4 &1141068768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141068765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1068.8413, y: 412.85834, z: 805.2855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143105663
 GameObject:
   m_ObjectHideFlags: 0
@@ -15309,6 +15378,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redScoreText: {fileID: 804755463}
   blueScoreText: {fileID: 1944246507}
+  HubLevel1Score: 0
+  HubLevel2Score: 0
+  HubLevel3Score: 0
+  HubScore: 0
+  BalancedHubScore: 0
+  UnbalancedHubScore: 0
+  BalanceThreshold: 0
+  StoragePartialScore: 0
+  StorageCompleteScore: 0
+  WarehousePartialScore: 0
+  WarehousePartialEndScore: 0
+  WarehouseCompleteScore: 0
+  WarehouseCompleteEndScore: 0
+  duckDropScore: 0
+  duckDropEndScore: 0
+  DuckScore: 0
   lights: []
 --- !u!114 &2060291400
 MonoBehaviour:
@@ -15323,6 +15408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerTextUI: {fileID: 1480213370}
+  gameType: teleop
 --- !u!114 &2060291401
 MonoBehaviour:
   m_ObjectHideFlags: 0

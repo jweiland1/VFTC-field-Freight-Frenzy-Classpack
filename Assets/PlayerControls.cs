@@ -37,6 +37,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""a4dcb0c9-ed41-4c04-9aa2-9cab23add3e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""DriveForward"",
                     ""type"": ""Button"",
                     ""id"": ""12e1c52e-2f98-43ca-b547-b72012075913"",
@@ -91,7 +100,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ArmExtend"",
+                    ""name"": ""Spinup"",
                     ""type"": ""Button"",
                     ""id"": ""a7c595f5-c9a8-483f-b8d9-34a1f584b5d8"",
                     ""expectedControlType"": ""Button"",
@@ -100,27 +109,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ArmDecend"",
+                    ""name"": ""Wobble"",
                     ""type"": ""Button"",
-                    ""id"": ""14181280-ac5b-4dfa-b455-971d2bad2fa7"",
+                    ""id"": ""cb8bc78f-4a46-4393-9369-cb5d25fc5aa5"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ArmRotateForward"",
+                    ""name"": ""WobbleHigh"",
                     ""type"": ""Button"",
-                    ""id"": ""0f5c4bcf-1270-4b01-b165-47639d411da9"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ArmRotateBackward"",
-                    ""type"": ""Button"",
-                    ""id"": ""1f15ba29-1f80-46fc-b36d-9b1c8f0a2aee"",
+                    ""id"": ""6135ebaa-bcf0-4171-aac8-49df073bb9b9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -289,40 +289,51 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ArmExtend"",
+                    ""action"": ""Spinup"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7d69dc20-0af2-482b-a74b-d5c3995fedb5"",
-                    ""path"": ""<Keyboard>/downArrow"",
+                    ""id"": ""9b8e7dc5-9939-46da-a0bb-8bd40c62b875"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ArmDecend"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""96eea83f-6291-44da-8295-9f67dcc79e2f"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""id"": ""36722a1b-783f-4994-8ce3-1df57ae29469"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ArmRotateForward"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f4733f45-b990-46fc-84ef-95c5ee46a233"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""a4dd2a52-176e-4c45-99d1-f3488afbf27e"",
+                    ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ArmRotateBackward"",
+                    ""action"": ""Wobble"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""59814964-5570-4c54-b4c7-d8f14d3eb77b"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WobbleHigh"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -334,16 +345,16 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // GamePlay
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
         m_GamePlay_Intake = m_GamePlay.FindAction("Intake", throwIfNotFound: true);
+        m_GamePlay_Shoot = m_GamePlay.FindAction("Shoot", throwIfNotFound: true);
         m_GamePlay_DriveForward = m_GamePlay.FindAction("DriveForward", throwIfNotFound: true);
         m_GamePlay_DriveBack = m_GamePlay.FindAction("DriveBack", throwIfNotFound: true);
         m_GamePlay_DriveLeft = m_GamePlay.FindAction("DriveLeft", throwIfNotFound: true);
         m_GamePlay_DriveRight = m_GamePlay.FindAction("DriveRight", throwIfNotFound: true);
         m_GamePlay_TurnLeft = m_GamePlay.FindAction("TurnLeft", throwIfNotFound: true);
         m_GamePlay_TurnRight = m_GamePlay.FindAction("TurnRight", throwIfNotFound: true);
-        m_GamePlay_ArmExtend = m_GamePlay.FindAction("ArmExtend", throwIfNotFound: true);
-        m_GamePlay_ArmDecend = m_GamePlay.FindAction("ArmDecend", throwIfNotFound: true);
-        m_GamePlay_ArmRotateForward = m_GamePlay.FindAction("ArmRotateForward", throwIfNotFound: true);
-        m_GamePlay_ArmRotateBackward = m_GamePlay.FindAction("ArmRotateBackward", throwIfNotFound: true);
+        m_GamePlay_Spinup = m_GamePlay.FindAction("Spinup", throwIfNotFound: true);
+        m_GamePlay_Wobble = m_GamePlay.FindAction("Wobble", throwIfNotFound: true);
+        m_GamePlay_WobbleHigh = m_GamePlay.FindAction("WobbleHigh", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -404,31 +415,31 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_GamePlay;
     private IGamePlayActions m_GamePlayActionsCallbackInterface;
     private readonly InputAction m_GamePlay_Intake;
+    private readonly InputAction m_GamePlay_Shoot;
     private readonly InputAction m_GamePlay_DriveForward;
     private readonly InputAction m_GamePlay_DriveBack;
     private readonly InputAction m_GamePlay_DriveLeft;
     private readonly InputAction m_GamePlay_DriveRight;
     private readonly InputAction m_GamePlay_TurnLeft;
     private readonly InputAction m_GamePlay_TurnRight;
-    private readonly InputAction m_GamePlay_ArmExtend;
-    private readonly InputAction m_GamePlay_ArmDecend;
-    private readonly InputAction m_GamePlay_ArmRotateForward;
-    private readonly InputAction m_GamePlay_ArmRotateBackward;
+    private readonly InputAction m_GamePlay_Spinup;
+    private readonly InputAction m_GamePlay_Wobble;
+    private readonly InputAction m_GamePlay_WobbleHigh;
     public struct GamePlayActions
     {
         private @PlayerControls m_Wrapper;
         public GamePlayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Intake => m_Wrapper.m_GamePlay_Intake;
+        public InputAction @Shoot => m_Wrapper.m_GamePlay_Shoot;
         public InputAction @DriveForward => m_Wrapper.m_GamePlay_DriveForward;
         public InputAction @DriveBack => m_Wrapper.m_GamePlay_DriveBack;
         public InputAction @DriveLeft => m_Wrapper.m_GamePlay_DriveLeft;
         public InputAction @DriveRight => m_Wrapper.m_GamePlay_DriveRight;
         public InputAction @TurnLeft => m_Wrapper.m_GamePlay_TurnLeft;
         public InputAction @TurnRight => m_Wrapper.m_GamePlay_TurnRight;
-        public InputAction @ArmExtend => m_Wrapper.m_GamePlay_ArmExtend;
-        public InputAction @ArmDecend => m_Wrapper.m_GamePlay_ArmDecend;
-        public InputAction @ArmRotateForward => m_Wrapper.m_GamePlay_ArmRotateForward;
-        public InputAction @ArmRotateBackward => m_Wrapper.m_GamePlay_ArmRotateBackward;
+        public InputAction @Spinup => m_Wrapper.m_GamePlay_Spinup;
+        public InputAction @Wobble => m_Wrapper.m_GamePlay_Wobble;
+        public InputAction @WobbleHigh => m_Wrapper.m_GamePlay_WobbleHigh;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -441,6 +452,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Intake.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnIntake;
                 @Intake.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnIntake;
                 @Intake.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnIntake;
+                @Shoot.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShoot;
                 @DriveForward.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDriveForward;
                 @DriveForward.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDriveForward;
                 @DriveForward.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDriveForward;
@@ -459,18 +473,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TurnRight.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnTurnRight;
                 @TurnRight.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnTurnRight;
                 @TurnRight.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnTurnRight;
-                @ArmExtend.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmExtend;
-                @ArmExtend.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmExtend;
-                @ArmExtend.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmExtend;
-                @ArmDecend.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmDecend;
-                @ArmDecend.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmDecend;
-                @ArmDecend.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmDecend;
-                @ArmRotateForward.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmRotateForward;
-                @ArmRotateForward.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmRotateForward;
-                @ArmRotateForward.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmRotateForward;
-                @ArmRotateBackward.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmRotateBackward;
-                @ArmRotateBackward.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmRotateBackward;
-                @ArmRotateBackward.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnArmRotateBackward;
+                @Spinup.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSpinup;
+                @Spinup.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSpinup;
+                @Spinup.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSpinup;
+                @Wobble.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnWobble;
+                @Wobble.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnWobble;
+                @Wobble.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnWobble;
+                @WobbleHigh.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnWobbleHigh;
+                @WobbleHigh.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnWobbleHigh;
+                @WobbleHigh.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnWobbleHigh;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -478,6 +489,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Intake.started += instance.OnIntake;
                 @Intake.performed += instance.OnIntake;
                 @Intake.canceled += instance.OnIntake;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
                 @DriveForward.started += instance.OnDriveForward;
                 @DriveForward.performed += instance.OnDriveForward;
                 @DriveForward.canceled += instance.OnDriveForward;
@@ -496,18 +510,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TurnRight.started += instance.OnTurnRight;
                 @TurnRight.performed += instance.OnTurnRight;
                 @TurnRight.canceled += instance.OnTurnRight;
-                @ArmExtend.started += instance.OnArmExtend;
-                @ArmExtend.performed += instance.OnArmExtend;
-                @ArmExtend.canceled += instance.OnArmExtend;
-                @ArmDecend.started += instance.OnArmDecend;
-                @ArmDecend.performed += instance.OnArmDecend;
-                @ArmDecend.canceled += instance.OnArmDecend;
-                @ArmRotateForward.started += instance.OnArmRotateForward;
-                @ArmRotateForward.performed += instance.OnArmRotateForward;
-                @ArmRotateForward.canceled += instance.OnArmRotateForward;
-                @ArmRotateBackward.started += instance.OnArmRotateBackward;
-                @ArmRotateBackward.performed += instance.OnArmRotateBackward;
-                @ArmRotateBackward.canceled += instance.OnArmRotateBackward;
+                @Spinup.started += instance.OnSpinup;
+                @Spinup.performed += instance.OnSpinup;
+                @Spinup.canceled += instance.OnSpinup;
+                @Wobble.started += instance.OnWobble;
+                @Wobble.performed += instance.OnWobble;
+                @Wobble.canceled += instance.OnWobble;
+                @WobbleHigh.started += instance.OnWobbleHigh;
+                @WobbleHigh.performed += instance.OnWobbleHigh;
+                @WobbleHigh.canceled += instance.OnWobbleHigh;
             }
         }
     }
@@ -515,15 +526,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IGamePlayActions
     {
         void OnIntake(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
         void OnDriveForward(InputAction.CallbackContext context);
         void OnDriveBack(InputAction.CallbackContext context);
         void OnDriveLeft(InputAction.CallbackContext context);
         void OnDriveRight(InputAction.CallbackContext context);
         void OnTurnLeft(InputAction.CallbackContext context);
         void OnTurnRight(InputAction.CallbackContext context);
-        void OnArmExtend(InputAction.CallbackContext context);
-        void OnArmDecend(InputAction.CallbackContext context);
-        void OnArmRotateForward(InputAction.CallbackContext context);
-        void OnArmRotateBackward(InputAction.CallbackContext context);
+        void OnSpinup(InputAction.CallbackContext context);
+        void OnWobble(InputAction.CallbackContext context);
+        void OnWobbleHigh(InputAction.CallbackContext context);
     }
 }

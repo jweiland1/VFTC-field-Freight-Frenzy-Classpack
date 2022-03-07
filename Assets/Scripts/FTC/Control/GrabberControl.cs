@@ -18,11 +18,14 @@ public class GrabberControl : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
+        Debug.Log(collision.tag);
         if ((collision.tag == tagOfGameObject1 || collision.tag == tagOfGameObject2) && wobble == null)
         {
             wobble = collision.gameObject;
         }
     }
+
+   
 
     public void startGrab()
     {
@@ -33,7 +36,8 @@ public class GrabberControl : MonoBehaviour
             wobble.transform.SetParent(robot);
             var rb = wobble.GetComponent<Rigidbody>();
             rb.isKinematic = true;
-            wobble.transform.localPosition = new Vector3(0f,-0.39f, 0.05f);
+            //-0.39f
+            wobble.transform.localPosition = new Vector3(0f, -0.1f, 0.05f);
         }
     }
 
@@ -41,7 +45,7 @@ public class GrabberControl : MonoBehaviour
     {
         if (wobble != null && grabing)
         {
-            wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
+            wobble.transform.localPosition = new Vector3(0f, -0.1f, 0.3f);
         }
     }
 

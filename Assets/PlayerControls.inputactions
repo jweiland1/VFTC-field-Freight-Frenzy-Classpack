@@ -15,6 +15,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "a4dcb0c9-ed41-4c04-9aa2-9cab23add3e9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "DriveForward",
                     "type": "Button",
                     "id": "12e1c52e-2f98-43ca-b547-b72012075913",
@@ -69,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ArmExtend",
+                    "name": "Spinup",
                     "type": "Button",
                     "id": "a7c595f5-c9a8-483f-b8d9-34a1f584b5d8",
                     "expectedControlType": "Button",
@@ -78,27 +87,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ArmDecend",
+                    "name": "Wobble",
                     "type": "Button",
-                    "id": "14181280-ac5b-4dfa-b455-971d2bad2fa7",
+                    "id": "cb8bc78f-4a46-4393-9369-cb5d25fc5aa5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ArmRotateForward",
+                    "name": "WobbleHigh",
                     "type": "Button",
-                    "id": "0f5c4bcf-1270-4b01-b165-47639d411da9",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ArmRotateBackward",
-                    "type": "Button",
-                    "id": "1f15ba29-1f80-46fc-b36d-9b1c8f0a2aee",
+                    "id": "6135ebaa-bcf0-4171-aac8-49df073bb9b9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -267,40 +267,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ArmExtend",
+                    "action": "Spinup",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "7d69dc20-0af2-482b-a74b-d5c3995fedb5",
-                    "path": "<Keyboard>/downArrow",
+                    "id": "9b8e7dc5-9939-46da-a0bb-8bd40c62b875",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ArmDecend",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "96eea83f-6291-44da-8295-9f67dcc79e2f",
-                    "path": "<Keyboard>/q",
+                    "id": "36722a1b-783f-4994-8ce3-1df57ae29469",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ArmRotateForward",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "f4733f45-b990-46fc-84ef-95c5ee46a233",
-                    "path": "<Keyboard>/e",
+                    "id": "a4dd2a52-176e-4c45-99d1-f3488afbf27e",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ArmRotateBackward",
+                    "action": "Wobble",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "59814964-5570-4c54-b4c7-d8f14d3eb77b",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WobbleHigh",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

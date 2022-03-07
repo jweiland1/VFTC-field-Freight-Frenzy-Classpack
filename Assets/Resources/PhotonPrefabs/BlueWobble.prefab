@@ -878,8 +878,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizeVelocity: 1
   m_SynchronizeAngularVelocity: 1
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 0.1
 --- !u!1 &4818726526157609910
 GameObject:
   m_ObjectHideFlags: 0

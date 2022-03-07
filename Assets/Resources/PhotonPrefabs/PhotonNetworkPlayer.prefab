@@ -3288,15 +3288,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingJoystick: 1
+  motorPower8: 0
+  motorPower9: 0
   drivetrainGearRatio: 20
   encoderTicksPerRev: 28
   wheelSeparationWidth: 0.4
   wheelSeparationLength: 0.4
   wheelRadius: 0.0508
   motorRPM: 340
+  rightTrigger: 0
   shooter: {fileID: 8622124234069995941}
   intake: {fileID: 6506226505863710965}
   grabber: {fileID: 8622124235094853404}
+  teamIndex: 0
+  canMove: 1
+  accelSpeed: 3
+  rotSpeed: 2
 --- !u!114 &3080137380110599889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3943,12 +3950,15 @@ MonoBehaviour:
   maxNumberBalls: 3
   numBalls: 3
   timeOfBallContact: 0.25
-  coliderTag: OutsideRing
-  wantedVelocity: 150
+  coliderTags:
+  - OutsideRing
+  desiredVelocity: 0
   rings:
   - {fileID: 1767086697947871976}
   - {fileID: 1028197373229389432}
   - {fileID: 1028197373531238049}
+  itemInBasket: 0
+  itemHolder: {fileID: 1028197372812385829}
 --- !u!1 &6506226507475969318
 GameObject:
   m_ObjectHideFlags: 0
@@ -4295,7 +4305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8622124234069995938}
-  - component: {fileID: 8622124234069995939}
+  - component: {fileID: 6267943437820242284}
   m_Layer: 0
   m_Name: ShooterAngle
   m_TagString: Untagged
@@ -4317,7 +4327,7 @@ Transform:
   m_Father: {fileID: 67174817542536549}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 54.9, y: 0, z: 0}
---- !u!114 &8622124234069995939
+--- !u!114 &6267943437820242284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4393,7 +4403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 0
-  robot: {fileID: 5836966544834976959}
+  robot: {fileID: 8622124235094853405}
 --- !u!1 &8900039044217039514
 GameObject:
   m_ObjectHideFlags: 0

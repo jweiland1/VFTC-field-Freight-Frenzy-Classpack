@@ -12,7 +12,7 @@ public class IntakeControl : MonoBehaviour
     public int maxNumberBalls = 5;
     public int numBalls = 3;
     public float timeOfBallContact = 1.0f;
-    public string[] coliderTags = {"PowerCell" };
+    public string[] coliderTags = {"OutsideRing" };
     private int colliderTagIndex;
 
     [Header("Intake Motor")]
@@ -61,7 +61,7 @@ public class IntakeControl : MonoBehaviour
     // Ball Pickup
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "Cube" || collision.tag == "Ball" || collision.tag == "Duck")
+        if ( collision.tag == "Ball" || collision.tag == "Duck")
         {
             if(!itemInBasket)PickupItem(collision.gameObject);
         }
@@ -87,7 +87,7 @@ public class IntakeControl : MonoBehaviour
                 {
                     numBalls++;
                     //resetBalls();
-                    //rings[colliderTagIndex].SetActive(true);
+                    rings[colliderTagIndex].SetActive(true);
                     lastRing = collision.gameObject;
                     if (Photon.Pun.PhotonNetwork.IsConnected)
                     {
@@ -107,7 +107,7 @@ public class IntakeControl : MonoBehaviour
     public void subtractBall()
     {
         numBalls--;
-        //rings[numBalls].SetActive(false);
+        rings[numBalls].SetActive(false);
     }
 
     /*public void resetBalls()

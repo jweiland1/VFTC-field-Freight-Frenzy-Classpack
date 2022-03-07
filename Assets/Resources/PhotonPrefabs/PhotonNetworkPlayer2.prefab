@@ -1853,8 +1853,10 @@ MonoBehaviour:
   - Cube
   - Ball
   - Duck
-  wantedVelocity: 150
+  desiredVelocity: 0
   rings: []
+  itemInBasket: 0
+  itemHolder: {fileID: 0}
 --- !u!1 &2822863594793112096
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,15 +2087,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingJoystick: 1
+  motorPower8: 0
+  motorPower9: 0
   drivetrainGearRatio: 20
   encoderTicksPerRev: 28
   wheelSeparationWidth: 0.4
   wheelSeparationLength: 0.4
   wheelRadius: 0.0508
   motorRPM: 340
-  lift: {fileID: 0}
+  rightTrigger: 0
+  arm: {fileID: 0}
   intake: {fileID: 2822863594255897263}
-  spinner: {fileID: 0}
+  teamIndex: 0
+  canMove: 1
+  accelSpeed: 3
+  rotSpeed: 2
 --- !u!65 &4770745332199739674
 BoxCollider:
   m_ObjectHideFlags: 0
